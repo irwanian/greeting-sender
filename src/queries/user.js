@@ -29,9 +29,9 @@ exports.getBirthdayPeopleInFourDaysRange = (data) => sequelize.query(
 exports.updateSUccessGreetingData = (data) => sequelize.query(
     `UPDATE users
         SET
-            birthday_greet_year = json_array_append(birthday_greet_year, '$', ${data.this_year})
+            ${data.event}_greet_year = json_array_append(${data.event}_greet_year, '$', ${data.this_year})
         WHERE id IN (${data.success_ids})
         AND
-            json_contains(birthday_greet_year, '${data.this_year}') = 0`, { type: QueryTypes.UPDATE });
+            json_contains(${data.event}_greet_year, '${data.this_year}') = 0`, { type: QueryTypes.UPDATE });
 
 module.exports = exports;
